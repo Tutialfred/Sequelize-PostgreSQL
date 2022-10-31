@@ -19,9 +19,9 @@ module.exports = (sequelize) => {
                                             // ↓ Si es unico  ↓ Validadores(valiudators)
         email: { type: DataTypes.STRING(200), unique: true, validate: {isEmail:true},
         // Modificar el valor previo a llegar a la base de datos → EXAMPLE = Antes de guardar la contraseña , que pase por una funcion hash y la guardamos hasheada
-        set(valor) {
+        set(valor) {         // ↓ Atributo que quiero setear 
             this.setDataValue("email", valor.toLowerCase()) //Guarda siempre el email en minuscula
-        }},
+        } },
 
 
         ShowFullName: { type: DataTypes.VIRTUAL, //Crear atributo virtual

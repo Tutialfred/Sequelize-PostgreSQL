@@ -4,7 +4,7 @@ const { db, User, Todo } = require("./db")
 
 
 // 🎈 MODULOS POR MODULOS (TABLAS)
-const creatingS = async() => {
+const creatingS = async () => {
     await User.sync({ alter: true}) //alter: true (alterar la tabla) - force: true (borrar toda la tabla)
     await Todo.sync()
 };
@@ -17,14 +17,17 @@ const creating = async () => {
     await db.sync({ alter: true });
 
 
-    // 🧶Creando un usuario en la tabla de la base de datos
-    // const user = await User.create({
-    //     firstName: "Miguel",
-    //     lastname: "Arias",
-    //     email: "MiguelA@henry.com"
-    // });
+        // 🧶Creando un usuario en la tabla de la base de datos
 
-    // console.table(user.toJSON());
+    const user = await User.create({
+        firstName: "Miguel",
+        lastname: "Arias",
+        email: "MiguelA@henry.com"
+    });
+
+    console.table(user.toJSON());
+
+
 
 
 
@@ -88,8 +91,8 @@ const bringAll = async () => {
 
     // 🏮🏮🏮🏮🏮🏮🏮🏮🏮🏮 CUARTA OPCION 🏮🏮🏮🏮🏮🏮🏮🏮🏮🏮
 
-    //  limite ↓        ↓ saltea estos 5 pasos
-    const user4 = await User.findAll({ where: { firstName: { [Op.iLike]: "%a%" } }, limit: 5, offset: 5 }) //Traeme cuya clave(columna), su valor(fila) contenga esta %letra% 
+                                               //   Contenga este caracter ↓      limite ↓       ↓ saltea estos 5 pasos
+    const user4 = await User.findAll({ where: { firstName: { [Op.iLike]: "%a%" } }, limit: 5, offset: 5 }) //Traeme cuya clave(columna), su valor(fila) contenga esta %letra%                           
     // console.table(user4.map(e => e.toJSON()))
 
 
@@ -122,7 +125,7 @@ const bringAll = async () => {
 
 const update = async () => {
     await db.sync({ alter: true })
-
+                                        // ↓ Datos a actualizar
     const response = await User.update({firstName: "oscar 142"},{ where: {email : "OZ@henry.com"}});
 
     console.table(response)
@@ -146,14 +149,17 @@ const deleting = async () => {
 
 
 
-// TEST
+// TEST 💚💚💚💚💚💚💚💚💚💚💚💚
 
 const test = async () =>{
     await db.sync({alter: true})
 
-    const show = await User.create({firstName: "Kratos", lastname: "DIOS", email: "KRATOS@Henry.Com"} )
+    // const show = await User.create({firstName: "Zeus", lastname: "GOD", email: "Zeus@olimpo.Com"} )
 
-    // console.table(show.map(e => e.toJSON()))
-    console.log(show.toJSON());
+    // // console.table(show.map(e => e.toJSON()))
+    // // console.table(show.toJSON());
 }
+
 test()
+
+
