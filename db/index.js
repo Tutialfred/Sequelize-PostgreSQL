@@ -1,8 +1,8 @@
 const {Sequelize} = require("sequelize"); //importar sequelize
 const users = require("./models/users");
 
-                                //         usuario -Password-puerto       ↓ Nombre de la base de datos a conectar
-const sequelize = new Sequelize('postgres://postgres:5432@localhost:5432/DEMO')
+                                //usuario -Password-host-puerto       ↓ Nombre de la base de datos a conectar
+const sequelize = new Sequelize('postgres://postgres:5432@localhost:5432/DEMO', {logging:false}) // no hagas algun logeo de informacion adicional
 
 // Conectando a la base de datos ↑
 
@@ -14,7 +14,7 @@ const Todo = require("./models/Todo")(sequelize); //Traemos el modelo 'Todo'
 
 
 
-
+// RELACIONES
 // usuario puede tener muchas TODO → 1 - n
 // Una TODO es creada por un usuario → n - 1 
 User.hasMany(Todo);

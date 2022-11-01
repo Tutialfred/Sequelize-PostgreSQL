@@ -1,3 +1,5 @@
+// Creando un modelo desde cero === creando una tabla
+
 const { Model, DataTypes } = require("sequelize"); //Importamos
 
 class Todo extends Model { } //Creamos la clase 
@@ -16,7 +18,7 @@ module.exports = (sequelize) => {
         // con Sequelize se agrega automaticamente el → ID, createdAt, updateAt 
 
     }, { sequelize, tableName: "Todos" })
-// Configuracion del modelo ↑     ↑ Nombre de la tabla, ??(POR DEFECTO SIEMPRE EN PLURAL?)??
+// Configuracion del modelo ↑     ↑ Nombre de la tabla, POR DEFECTO SIEMPRE EN PLURAL
 
 };
 

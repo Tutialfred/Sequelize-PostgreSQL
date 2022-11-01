@@ -1,3 +1,5 @@
+// Creando un modelo desde cero === creando una tabla
+
 const { Model, DataTypes } = require("sequelize"); //Importamos
 
 class User extends Model { } //Creamos la clase 
@@ -27,18 +29,19 @@ module.exports = (sequelize) => {
         ShowFullName: { type: DataTypes.VIRTUAL, //Crear atributo virtual
         get () {
             return `${this.getDataValue("firstName")} ${this.getDataValue("lastname")}` //Crea un atributo que solo vive en sequelize con nombre y apellidos juntos, sin modificar a la base de datos
-        }
-    }
+        },
+    }, 
 
 
 
     // con Sequelize se agrega automaticamente el → ID, createdAt, updateAt 
-    }, { sequelize, tableName: "MyUsers" })
-    // Configuracion del modelo ↑    ↑ Nombre de la tabla 
-};
+    }, { sequelize, tableName: "MyUsers", timestamps:false}) // false eliminar a createdAt, updateAt 
+    // Configuracion del modelo ↑  ↑ Nombre de la tabla 
+} ;
 
 
 // unique = tiene que ser unico
 // allowNull = permitir si puede estar vacio, o si tiene que ser obligatorio
 // validate = para validarar cierto datos
 // VIRTUAL = no se va a impactar en la base de datos, solo existe en sequelize
+// timestamps = false === elimina de la tabla a → createdAt y updateAt (true: poder variar nombre o mostrar solamente uno, etc)

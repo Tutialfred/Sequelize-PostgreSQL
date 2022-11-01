@@ -3,16 +3,16 @@ const { db, User, Todo } = require("./db")
 
 
 
-// 🎈 MODULOS POR MODULOS (TABLAS)
+// 🎈 SINCRONIZANDO MODULO POR MODULO (TABLAS)
 const creatingS = async () => {
-    await User.sync({ alter: true}) //alter: true (alterar la tabla) - force: true (borrar toda la tabla)
+    await User.sync({ alter: true}) // alter: true (alterar la tabla) - force: true (borrar toda la tabla)
     await Todo.sync()
 };
 
 
 
 
-// // 🎈 Todos los modulos incorportados con → 'db'
+// // 🎈 Sincronizando todos los modulos incorportados con → 'db'
 const creating = async () => {
     await db.sync({ alter: true });
 
@@ -72,7 +72,7 @@ const bringAll = async () => {
 
                             // Traer toda la informacion, registros
     const users = await User.findAll()//te trae un array (Clase 'users') de instancias del usuario === objeto complejo
-    // console.table(users.map(e => e.toJSON())) // Convertir OR extraer a objeto planos
+    console.table(users.map(e => e.toJSON())) // Convertir OR extraer a objeto planos
 
 
     // 🏮🏮🏮🏮🏮🏮🏮🏮🏮🏮 SEGUNDA OPCION 🏮🏮🏮🏮🏮🏮🏮🏮🏮🏮
@@ -116,7 +116,8 @@ const bringAll = async () => {
     const user7 = await User.findOne({ where: { firstName: { [Op.iLike]: "%a%" } } });
     // console.table(user7.toJSON());
 }
-// bringAll();
+
+bringAll();
 
 
 
@@ -160,6 +161,6 @@ const test = async () =>{
     // // console.table(show.toJSON());
 }
 
-test()
+// test()
 
 
